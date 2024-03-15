@@ -6,7 +6,7 @@
 
 import "./ipc";
 
-import { app, BrowserWindow, nativeTheme } from "electron";
+import { app, BrowserWindow, nativeTheme, globalShortcut, ipcMain, webFrame } from "electron";
 import { checkUpdates } from "updater/main";
 
 import { DATA_DIR } from "./constants";
@@ -16,6 +16,7 @@ import { registerMediaPermissionsHandler } from "./mediaPermissions";
 import { registerScreenShareHandler } from "./screenShare";
 import { Settings, State } from "./settings";
 import { isDeckGameMode } from "./utils/steamOS";
+import {keybinds} from './kd8lvt/keybinds';
 
 if (IS_DEV) {
     require("source-map-support").install();
@@ -65,10 +66,22 @@ function init() {
 
         bootstrap();
 
+        regKeybind("Mute","F24",()=>{keybinds.mute(BrowserWindow.getAllWindows()[0].webContents)});
+        regKeybind("Deafen","F23",()=>{keybinds.deafen(BrowserWindow.getAllWindows()[0].webContents)});
+
         app.on("activate", () => {
             if (BrowserWindow.getAllWindows().length === 0) createWindows();
         });
+
+        app.on('will-quit',()=>{
+            globalShortcut.unregisterAll();
+        });
     });
+}
+
+function regKeybind(name,accelerator,callback) {
+    let ret = globalShortcut.register(accelerator,callback);
+    if (!ret) console.error(`Failed to register ${name} keybind with key combo ${accelerator}`);
 }
 
 if (!app.requestSingleInstanceLock({ IS_DEV })) {
