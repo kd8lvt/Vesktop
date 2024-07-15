@@ -21,9 +21,11 @@
         "test": "pnpm lint && pnpm testTypes",
         "testTypes": "tsc --noEmit",
         "watch": "pnpm build --watch",
-        "updateMeta": "tsx scripts/utils/updateMeta.mts"
+        "updateMeta": "tsx scripts/utils/updateMeta.mts",
+        "install": "tsx scripts/run_installer.ts"
     },
     "dependencies": {
+        "@root/walk": "^1.1.0",
         "arrpc": "github:OpenAsar/arrpc#6960a8fd4d65d566da93dbdb8a7ca474aa0a3c9c"
     },
     "optionalDependencies": {
@@ -136,20 +138,21 @@
             "icon": "build/icon.icns",
             "iconSize": 105,
             "window": {
-              "width": 512,
-              "height": 340
+                "width": 512,
+                "height": 340
             },
-      
-            "contents": [{
-                "x": 140,
-                "y": 160
-            },
-            {
-                "x": 372,
-                "y": 160,
-                "type": "link",
-                "path": "/Applications"
-            }]
+            "contents": [
+                {
+                    "x": 140,
+                    "y": 160
+                },
+                {
+                    "x": 372,
+                    "y": 160,
+                    "type": "link",
+                    "path": "/Applications"
+                }
+            ]
         },
         "nsis": {
             "include": "build/installer.nsh",
