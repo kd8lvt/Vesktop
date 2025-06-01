@@ -555,5 +555,33 @@ export async function createWindows() {
         }
     });
 
+    mainWin.webContents.on("dom-ready",()=>{
+        //Get some common buttons the user (i.e. me) may want to set a global keybind for, once DOM is ready.
+        //Yes, this method is gross and nasty, I simply do not care.
+        //I'm the only one using this. I hope. If someone else is, for the love of god just *don't.*
+        mainWin.webContents.executeJavaScript(`
+            //This string is a script that gets run inside the renderer context, in possibly the single worst way ever.
+            //exec() ain't got nothin' on me.
+            window.kd8lvt = window.kd8lvt || {};
+            window.kd8lvt.buttons = window.kd8lvt.buttons || {};
+            
+            (()=>{
+                //Finds and returns a <button> element with the given aria label, assuming one exists. Null otherwise.
+                function findButtonWithAriaLabel(label) {
+                    for (let val of document.getElementsByTagName('button')) {
+                        if (val.ariaLabel == label) {
+                            return val;
+                            break;
+                        }
+                    }
+                    return null;
+                }
+
+                window.kd8lvt.buttons.mute = findButtonWithAriaLabel('Mute');
+                window.kd8lvt.buttons.deafen = findButtonWithAriaLabel('Deafen');
+            })();
+        `)
+    });
+
     initArRPC();
 }

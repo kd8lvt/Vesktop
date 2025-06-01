@@ -107,6 +107,7 @@ function init() {
 
         bootstrap();
 
+        //TODO: Make these keybinds dynamic
         regKeybind("Mute","F24",()=>{keybinds.mute(BrowserWindow.getAllWindows()[0].webContents)});
         regKeybind("Deafen","F23",()=>{keybinds.deafen(BrowserWindow.getAllWindows()[0].webContents)});
 

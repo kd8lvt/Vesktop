@@ -23,6 +23,7 @@
         "watch": "pnpm build --watch",
         "updateMeta": "tsx scripts/utils/updateMeta.mts",
         "install": "tsx scripts/run_installer.ts",
+        "update": "tsx scripts/update.ts",
         "updateArrpcDB": "node ./node_modules/arrpc/update_db.js",
         "postinstall": "pnpm updateArrpcDB"
     },
@@ -35,6 +36,7 @@
     },
     "devDependencies": {
         "@fal-works/esbuild-plugin-global-externals": "^2.1.2",
+        "@root/walk": "^1.1.0",
         "@stylistic/eslint-plugin": "^4.2.0",
         "@types/node": "^22.15.18",
         "@types/react": "18.3.1",
@@ -43,7 +45,7 @@
         "electron": "^36.2.1",
         "electron-builder": "^26.0.12",
         "esbuild": "^0.25.4",
-        "eslint": "^9.27.0",
+        "eslint": "^9.28.0",
         "eslint-import-resolver-alias": "^1.1.2",
         "eslint-plugin-path-alias": "^2.1.0",
         "eslint-plugin-prettier": "^5.4.0",

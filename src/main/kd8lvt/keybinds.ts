@@ -1,12 +1,8 @@
 export const keybinds = {
   mute: (webContents)=>{
-    webContents.executeJavaScript(`for (let val of document.getElementsByTagName('button')) {
-  if (val.ariaLabel == 'Mute') {val.click();break;}
-}`)
+    webContents.executeJavaScript(`window.kd8lvt.buttons.mute.click();`);
   },
   deafen: (webContents)=>{
-    webContents.executeJavaScript(`for (let val of document.getElementsByTagName('button')) {
-  if (val.ariaLabel == 'Deafen') {val.click();break;}
-}`)
+    webContents.executeJavaScript(`window.kd8lvt.buttons.deafen.click();`);
   }
 }
