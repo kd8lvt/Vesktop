@@ -13,9 +13,6 @@ importers:
 
   .:
     dependencies:
-      '@root/walk':
-        specifier: ^1.1.0
-        version: 1.1.0
       arrpc:
         specifier: github:OpenAsar/arrpc#2234e9c9111f4c42ebcc3aa6a2215bfd979eef77
         version: https://codeload.github.com/OpenAsar/arrpc/tar.gz/2234e9c9111f4c42ebcc3aa6a2215bfd979eef77(patch_hash=4313fe844324a52ef0453078a86f5d1ee2d4f406331201211020d9fa243323c4)
@@ -26,6 +23,9 @@ importers:
       '@fal-works/esbuild-plugin-global-externals':
         specifier: ^2.1.2
         version: 2.1.2
+      '@root/walk':
+        specifier: ^1.1.0
+        version: 1.1.0
       '@stylistic/eslint-plugin':
         specifier: ^4.2.0
         version: 4.4.0(eslint@9.28.0)(typescript@5.8.3)

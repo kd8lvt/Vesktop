@@ -108,8 +108,12 @@ function init() {
         bootstrap();
 
         //TODO: Make these keybinds dynamic
-        regKeybind("Mute","F24",()=>{keybinds.mute(BrowserWindow.getAllWindows()[0].webContents)});
-        regKeybind("Deafen","F23",()=>{keybinds.deafen(BrowserWindow.getAllWindows()[0].webContents)});
+        for (let i of Object.keys(keybinds)) regKeybind(
+            keybinds[i].name,
+            keybinds[i].key,
+            ()=>{keybinds[i].callback(BrowserWindow.getAllWindows()[0].webContents)}
+        );
+        
 
         app.on("activate", () => {
             if (BrowserWindow.getAllWindows().length === 0) createWindows();
